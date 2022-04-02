@@ -1,6 +1,8 @@
 Python Pillow = Image manipulation
 Pendulum = Timezone and Time
 Loguru = Logging made more fun and less painfull
+Flask = Website Builder (Simple)
+Django = Website Builder (Complex)
 
 PySimpleGUI = Simple GUI module
 Kivy = Advanced GUI module
