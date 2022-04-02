@@ -1,0 +1,6 @@
+Python Pillow = Image manipulation
+Pendulum = Timezone and Time
+Loguru = Logging made more fun and less painfull
+
+PySimpleGUI = Simple GUI module
+Kivy = Advanced GUI module
