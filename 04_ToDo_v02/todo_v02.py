@@ -1,14 +1,3 @@
-'''
-Making a simplified version of the todo_code
-Previous Version was made with the CMD Terminal in mind
-Using PySimpleGUI will remove the need for a lot of user errors
-----
-I've started from scratch and made the code a lot simpler.
-- There is no need for a class.
-- Simple manipulation of the dictonary is enough
-- No need to create any GUI elements here
-- proper (better tbh) naming convention
-'''
 #modules needed for this program
 import json
 import os
@@ -26,7 +15,7 @@ todo_json = "" #JSON formated todo_list
 def save_todo():
     global todo_json
     global todo_list
-    todo_json = json.dumps(todo_list) #convert data to json
+    todo_json = json.dumps(todo_list)
     x = open("data.json", "w") #open the file
     x.write(todo_json) #write away the json
     x.close()
@@ -35,11 +24,14 @@ def load_todo():
     global todo_list
     global todo_json
     global idcounter
-    x = open("data.json", "r") #open the file
-    todo_json = x.read() #read the file
-    x.close() #making sure you close it
-    todo_list = json.loads(todo_json) #convert json back to dictionary
-    idcounter = todo_list.get("ID")
+    if os.path.exists("data.json"):
+        x = open("data.json", "r") #open the file
+        todo_json = x.read() #read the file
+        x.close() #making sure you close it
+        todo_list = json.loads(todo_json) #convert json back to dictionary
+        idcounter = todo_list.get("ID")
+    else:
+        save_todo()
 
 def reset_todo():
     global idcounter
@@ -50,6 +42,7 @@ def reset_todo():
         idcounter = 1
         todo_list = {"ID":1}
         todo_json = ""
+        save_todo()
     else:
         print("The file does not exist")
 
@@ -61,12 +54,14 @@ def del_todo(x):
 def create_todo(x):
     global todo_list
     global idcounter
+    global todo_json
     idTag = "-IDTAG_" + str(idcounter) + "-"
     #update the dictionary
     todo_list[idTag] = x
     #+ 1 to the idcounter
     idcounter = idcounter + 1
     todo_list["ID"] = idcounter
+    todo_json = json.dumps(todo_list) #convert data to json
 
 #function to print out all the todo objects
 def show_todo():
@@ -82,10 +77,7 @@ def quick_create_todo():
 #Printing ToDo_List to the Console for debugging - only works when you are
 #within the .py file itself
 if __name__ == "__main__":
-    create_todo("FIRST SINGLE")
-
     quick_create_todo()
-
-    print(todo_list)
-
     save_todo()
+
+load_todo()
