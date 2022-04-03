@@ -29,7 +29,8 @@ def save_todo():
     todo_json = json.dumps(todo_list) #convert data to json
     x = open("data.json", "w") #open the file
     x.write(todo_json) #write away the json
-    x.close() #making sure you close it
+    x.close()
+
 def load_todo():
     global todo_list
     global todo_json
@@ -39,6 +40,7 @@ def load_todo():
     x.close() #making sure you close it
     todo_list = json.loads(todo_json) #convert json back to dictionary
     idcounter = todo_list.get("ID")
+
 def reset_todo():
     global idcounter
     global todo_list
@@ -50,6 +52,7 @@ def reset_todo():
         todo_json = ""
     else:
         print("The file does not exist")
+
 #Only function that can be used during the program
 def del_todo(x):
     todo_list.pop(x)
@@ -58,17 +61,12 @@ def del_todo(x):
 def create_todo(x):
     global todo_list
     global idcounter
-    if x != "":
-        idTag = "-IDTAG_" + str(idcounter) + "-"
-        #update the dictionary
-        todo_list[idTag] = str(x)
-        #+ 1 to the idcounter
-        idcounter = idcounter + 1
-        todo_list["ID"] = idcounter
-    else:
-        print("NoInput - PySimpleGUI should call POPUP")
-        return "-POPUP-"
-    print(todo_list)
+    idTag = "-IDTAG_" + str(idcounter) + "-"
+    #update the dictionary
+    todo_list[idTag] = x
+    #+ 1 to the idcounter
+    idcounter = idcounter + 1
+    todo_list["ID"] = idcounter
 
 #function to print out all the todo objects
 def show_todo():
@@ -84,4 +82,10 @@ def quick_create_todo():
 #Printing ToDo_List to the Console for debugging - only works when you are
 #within the .py file itself
 if __name__ == "__main__":
-    pass
+    create_todo("FIRST SINGLE")
+
+    quick_create_todo()
+
+    print(todo_list)
+
+    save_todo()
