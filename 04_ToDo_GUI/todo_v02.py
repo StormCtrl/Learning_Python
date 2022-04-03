@@ -58,12 +58,17 @@ def del_todo(x):
 def create_todo(x):
     global todo_list
     global idcounter
-    idTag = "-IDTAG_" + str(idcounter) + "-"
-    #update the dictionary
-    todo_list[idTag] = str(x)
-    #+ 1 to the idcounter
-    idcounter = idcounter + 1
-    todo_list["ID"] = idcounter
+    if x != "":
+        idTag = "-IDTAG_" + str(idcounter) + "-"
+        #update the dictionary
+        todo_list[idTag] = str(x)
+        #+ 1 to the idcounter
+        idcounter = idcounter + 1
+        todo_list["ID"] = idcounter
+    else:
+        print("NoInput - PySimpleGUI should call POPUP")
+        return "-POPUP-"
+    print(todo_list)
 
 #function to print out all the todo objects
 def show_todo():
@@ -79,21 +84,4 @@ def quick_create_todo():
 #Printing ToDo_List to the Console for debugging - only works when you are
 #within the .py file itself
 if __name__ == "__main__":
-    print("------------ Initializing Test-Run:")
-    quick_create_todo()
-    show_todo()
-    save_todo()
-    print("------------ JSON FILE:")
-    print(todo_json)
-    print("------------ Reseting global variables info")
-    todo_json = ""
-    todo_list = {}
-    print("------------ Reloading JSON & Printing out Dictionary")
-    load_todo()
-    print(todo_list)
-    print("------------ Reseting data.json list")
-    reset_todo()
-    if todo_json == "" and todo_list == {"ID":1} and idcounter == 1:
-        print("Everything has been Reset")
-    else:
-        print("Something went wrong")
+    pass
