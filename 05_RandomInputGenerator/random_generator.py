@@ -20,21 +20,21 @@ list_callsigns = ["Alpha",
 
 list_short_abc = "ABCDEFGHIJKLMNO"
 
-def gen_int(x):
+def gen_int(x="10"):
     gen_int_list = []
     for x in range(1,x):
         y = random.randint(100,999)
         gen_int_list.append(y)
     return gen_int_list
 
-def gen_float(x):
+def gen_float(x="10"):
     gen_float_list = []
     for x in range(1,x):
         y = random.random()
         gen_float_list.append(y)
     return gen_float_list
 
-def gen_abc(x):
+def gen_abc(x="10"):
     gen_abc_list = []
     abc_lenght = len(list_short_abc)
     for x in range(1,x):
@@ -43,7 +43,7 @@ def gen_abc(x):
         gen_abc_list.append(y)
     return gen_abc_list
 
-def gen_string(x):
+def gen_string(x="10"):
     gen_string_list = []
     strings_lenght = len(list_callsigns)
     for x in range(1,x):
@@ -55,7 +55,7 @@ def gen_string(x):
         gen_string_list.append(y)
     return gen_string_list
 
-def gen_dict(x):
+def gen_dict(x="10"):
     gen_dict = {}
     for x in range(1,x):
         # a = gen_int(2)[0]
@@ -63,7 +63,7 @@ def gen_dict(x):
         gen_dict[x]=b
     return gen_dict
 
-def gen_dict_array(x):
+def gen_dict_array(x="10"):
     gen_dict_array = {}
     gen_dict_list = []
     for x in range(1,x):
